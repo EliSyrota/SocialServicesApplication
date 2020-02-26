@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+
+a {
+  color: #6ac8ff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+code {
+  font-weight: bold;
+  color: lightblue;
+}
+
+.container {
+  min-width: 77%;
+  max-width: 77%;
+  width: 77%;
+}
+
+.instruction {
+  display: inline-block;
+  min-width: 100%;
+  padding: 16px;
+  margin: 5px 0px;
+  background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072cc);
+  color: white;
+  border-radius: .4rem;
+}
+
+.token {
+  background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072dd);
+  min-width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 5px 0px;
+  color: white;
+  border-radius: .4rem;
+}
+
+.tokenstatus {
+  background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072dd);
+  max-width: 20%;
+  min-width: 20%;
+  color: white;
+  margin: 5px 0px;
+  padding: 8px;
+  border-radius: .4rem;
+  position: fixed;
+  top: 7%; /* если ноль заменить на число (и в скрипте тоже), то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом. Применим, например, при фиксированном сверху меню */
+  z-index: 101;
+  right: 1%;
+}
+
+.tokenForm {
+  padding: 10px;
+  margin: 5px 0px;
+  background-image: linear-gradient(242deg, #f2babb, #9584f6 51%, #8a9bf1);
+  border-radius: .4rem;
+}
+
+.transparent:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072cc);
+}
+
+.form-inner {
+  position: relative;
+}
+
+  .form-inner label {
+    padding-left: 15px;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255,255,255,.7);
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  .form-inner input {
+    width: 100%;
+    padding: 0 15px;
+    margin: 10px 0 15px;
+    border-width: 0;
+    line-height: 40px;
+    border-radius: 20px;
+    color: white;
+    background: rgba(255,255,255,.2);
+    font-family: 'Roboto', sans-serif;
+  }
+
+    .form-inner input[type="submit"] {
+      background-image: linear-gradient(242deg, #d08a8b, #7e6fd3 51%, #5368d0);
+    }
+
+body {
+  background-image: linear-gradient(242deg, #d08a8b, #7e6fd3 51%, #5368d0);
+  min-height: calc(100vh)
+}
+
+.switch-btn {
+  display: inline-block;
+  width: 72px; /* ширина */
+  height: 38px; /* высота */
+  border-radius: 19px; /* радиус скругления */
+  background: #bfbfbf; /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+  float: right;
+}
+
+  .switch-btn::after {
+    content: "";
+    height: 32px; /* высота кнопки */
+    width: 32px; /* ширина кнопки */
+    border-radius: 17px;
+    background: #fff; /* цвет кнопки */
+    top: 3px; /* положение кнопки по вертикали относительно основы */
+    left: 3px; /* положение кнопки по горизонтали относительно основы */
+    transition-duration: 300ms; /* анимация */
+    position: absolute;
+    z-index: 1;
+  }
+
+.switch-on {
+  background: #118c4e;
+}
+
+  .switch-on::after {
+    left: 37px;
+  }

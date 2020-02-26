@@ -1,0 +1,56 @@
+
+<div class="tokenstatus">
+  <table>
+    <tr>
+      <td style="width: 20%">
+        <code> Social Web Service </code>
+      </td>
+      <td style="width: 20%">
+        <code> {{ webServiceConnectionText  }}</code>
+
+      </td>
+
+    </tr>
+    <tr>
+      <td style="width: 20%">
+        <code> Telegram Service Connection </code>
+      </td>
+      <td style="width: 20%">
+        <code> {{ telegramServicesWorkingText}}</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 20%">
+        <code> Auto Checker WEB-Api Service</code>
+      </td>
+      <td style="width: 20%">
+        <code> {{autoRunnerText  }}</code>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<div class="container">
+  <div class="token">
+    <h3>Social account checker</h3>
+    <p>With help of this application you can check existance of next social networks:</p>
+    <ul>
+      <li><a href='https://www.viber.com/'>Viber</a> accounts</li>
+      <li><a href='https://telegram.org/'>Telegram</a> accounts</li>
+      <li><a href='https://www.whatsapp.com/'>WhatsApp </a> accounts</li>
+    </ul>
+  </div>
+  <div class="token">
+    <h3>✪ Проверить <code>Telegram </code>аккаунт</h3>
+    <div class="form-inner">
+      <form class="tokenForm" method="post">
+        <label>Номер телефона</label> <input type="text" id="phone" autocomplete="off" value="" (keyup)="onKey($event)" placeholder="380937502020" pattern="[0-9]\d{11}">
+        <input type="button" value="Выбрать" (click)="checkNumber()">
+      </form>
+    </div>
+  </div>
+  <div class="token" id="tableplace">
+  </div>
+</div>
+

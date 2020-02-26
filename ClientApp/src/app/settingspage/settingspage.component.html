@@ -1,0 +1,52 @@
+<div class="token">
+  <h3>✪ Настройка подключения к <code>Telegram</code></h3>
+  <!--<p>Для этого нужно выполнить следующие действия:</p>-->
+  <div class="form-inner">
+    <form class="tokenForm" method="post">
+      <label>Telegram API Id</label> <input type="text" id="apiid" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.telegramSettingsChanging">
+      <label>Telegram API Hash</label> <input type="text" id="apihash" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.telegramSettingsChanging">
+      <label>Registered Phone</label> <input type="text" id="numberToAuthenticate" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.telegramSettingsChanging">
+      <label>Two-Way Password</label>
+      <button class="btn btn-primary" style="float: right" (click)="sendPassword()" [disabled]="!this.telegramSettingsChanging">Выслать пароль для двуфакторной авторизации</button>
+
+      <input type="text" id="codeToAuthenticate" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.telegramSettingsChanging">
+      <button class="btn btn-primary" style="float: right; margin-right: 5px; " (click)="sendPassword()">
+        {{  telegramSettingsChanging? 'Сохранить':'Редактировать' }}
+      </button>
+      <pre>
+
+</pre>
+    </form>
+  </div>
+  <h3>✪ Настройка <code>WebServices</code></h3>
+  <!--<p>Для этого нужно выполнить следующие действия:</p>-->
+  <div class="form-inner">
+    <form class="tokenForm" method="post">
+      <label>Auto Checker Sources Url</label> <input type="text" id="SourceUrl" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.apiSettingsChanging">
+      <label>Auto Checker Services TimeOut (milliseconds)</label> <input type="number" id="interval" autocomplete="off" value="" (keyup)="onKey($event)" [readonly]="!this.apiSettingsChanging">
+      <label>Auto Checker Services Enabled</label> <div class="{{serviceRunning?'switch-btn switch-on':'switch-btn'
+        }}">
+      </div>
+      <pre>
+
+</pre>
+      <button class="btn btn-primary" style="float: right; margin-left: 1px;" (click)="saveSettings()">
+        {{apiSettingsChanging?'Сохранить':'Редактировать'}}
+      </button>
+      <button class="btn btn-primary" style="float: right" (click)="webserviceSetup()">
+        {{
+serviceRunning?'Отключить веб-сервис':'Включить веб-сервис'
+        }}
+      </button>
+      <pre>
+
+</pre>
+    </form>
+  </div>
+
+</div>
+<!--<script>-->
+<!--$('.switch-btn').click(function(){
+    $(this).toggleClass('switch-on');
+  });
+</script>-->

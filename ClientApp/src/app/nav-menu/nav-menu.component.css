@@ -1,0 +1,30 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  color: white !important;
+  word-break: break-all;
+}
+
+nav {
+  background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072cc);
+  color: white !important;
+  border-radius: 0px 0px 20px 20px;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+.navbar-collapse {
+  color: white;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
