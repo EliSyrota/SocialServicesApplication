@@ -90,8 +90,10 @@ namespace SocialServicesApplication
 			{
 				return false;
 			}
-			var client = new HttpClient { BaseAddress = new Uri(_settings.SourceUrl) };
-			var request = new HttpRequestMessage(HttpMethod.Put, _settings.SourceUrl);
+			var token = CalculateMD5Hash($"LeadBolid-{DateTime.Now:yyyy-MM-dd}").ToLower();
+			var sourceUrl = string.Concat(_settings.SourceUrl, $"?token={token}");
+			var client = new HttpClient { BaseAddress = new Uri(sourceUrl) };
+			var request = new HttpRequestMessage(HttpMethod.Put, sourceUrl);
 			request.Content = new FormUrlEncodedContent(getData(leads));
 			var response = client.SendAsync(request);
 			response.Wait();

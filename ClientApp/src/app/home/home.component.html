@@ -31,7 +31,7 @@
 
 </div>
 
-<div class="container">
+<div class="container" id="tableplace">
   <div class="token">
     <h3>Social account checker</h3>
     <p>With help of this application you can check existance of next social networks:</p>
@@ -46,11 +46,21 @@
     <div class="form-inner">
       <form class="tokenForm" method="post">
         <label>Номер телефона</label> <input type="text" id="phone" autocomplete="off" value="" (keyup)="onKey($event)" placeholder="380937502020" pattern="[0-9]\d{11}">
-        <input type="button" value="Выбрать" (click)="checkNumber()">
+        <input type="button" value="Выбрать (Enter)" (click)="checkNumber()">
       </form>
     </div>
   </div>
-  <div class="token" id="tableplace">
+  <div class="token">
+    <h3>✪ Проверить <code>Telegram </code>аккаунт</h3>
+    <div class="form-inner" >
+      <form class="tokenForm" method="post" id="multicheck">
+        <label>Номера телефонов</label><br />
+        <textarea rows="3" id="phones" style="width: 100%; background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072cc); color: rgba(255,255,255,.7);" placeholder="380937502020
+380937502025" (keyup)="onKey($event)"></textarea>
+        <input type="button" value="Выбрать (Ctrl + Enter)" (click)="checkNumbers()">
+        <input type="button" value="Сохранить результаты поиска" (click)="saveFile()" [readonly]="!this.downloadFile">
+      </form>
+    </div>
   </div>
 </div>
 

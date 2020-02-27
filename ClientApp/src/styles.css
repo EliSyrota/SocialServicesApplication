@@ -89,7 +89,19 @@ code {
   .form-inner input {
     width: 100%;
     padding: 0 15px;
-    margin: 10px 0 15px;
+    margin: 5px 0 10px;
+    border-width: 0;
+    line-height: 40px;
+    border-radius: 20px;
+    color: white;
+    background: rgba(255,255,255,.2);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .form-inner a {
+    width: 100%;
+    padding: 0 15px;
+    margin: 5px 0 5px;
     border-width: 0;
     line-height: 40px;
     border-radius: 20px;
