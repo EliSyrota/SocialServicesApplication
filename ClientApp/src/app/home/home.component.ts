@@ -337,22 +337,25 @@ export class HomeComponent {
     var headers = {
       id: 'Temp id'.replace(/,/g, ''), // remove commas to avoid errors
       phone: 'Phone number'.replace(/,/g, ''), // remove commas to avoid errors
-      telegram: "Telegram",
-      telegramLogin: "Telegram username",
+      isTelegram: "Telegram",
+      telegramUser: "Telegram username",
     };
-    if (headers) {
-      items.unshift(headers);
-    }
-
     var itemsFormatted = [];
-
-    // format the data
     items.forEach((item) => {
       itemsFormatted.push({
+        id: item.id.toString(),
         phone: item.phone.replace(/,/g, ''), // remove commas to avoid errors,
-        telegram: item.telegram,
+        isTelegram: item.isTelegram,
+        telegramUser: item.telegramUser
       });
     });
+    if (headers) {
+      itemsFormatted.unshift(headers);
+    }
+
+
+    // format the data
+    
     // Convert Object to JSON
     var jsonObject = JSON.stringify(itemsFormatted);
 

@@ -188,3 +188,7 @@ p {
   font-size: 22px;
   font-family: 'Abel', sans-serif;
 }
+
+::placeholder {
+  color: #fff;
+}
