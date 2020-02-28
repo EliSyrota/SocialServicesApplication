@@ -20,10 +20,14 @@ export class HomeComponent {
   public rowLast: number;
   public downloadFile: boolean;
   public savePath: string;
+  public resultToFile: string;
+
+  public progress: number;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
     this.httpClient = http;
+    this.progress = 0;
     this.baseUrl = baseUrl;
     this.resultTableCreated = false;
     this.downloadFile = false;
@@ -62,13 +66,33 @@ export class HomeComponent {
 
   public saveFile() {
     if (this.downloadFile && this.savePath !== null && this.savePath.length > 0) {
-      var a = document.createElement("a");
-      a.href = this.savePath;
-      a.download = 'result.txt';
-      a.innerHTML = 'Сохранить в файл';
-      a.click();
+      //a.click();
       this.downloadFile = false;
       this.savePath = "";
+
+
+      var exportedFilenmae = 'result.csv';
+      if (this.resultToFile !== null && this.resultToFile.length > 0) {
+
+        var blob = new Blob([this.resultToFile], { type: 'text/csv;charset=utf-8;' });
+        if (navigator.msSaveBlob) { // IE 10+
+          navigator.msSaveBlob(blob, exportedFilenmae);
+        } else {
+          var link = document.createElement("a");
+          if (link.download !== undefined) { // feature detection
+            // Browsers that support HTML5 download attribute
+            var url = URL.createObjectURL(blob);
+
+            this.savePath = url;
+            link.setAttribute("href", url);
+            link.setAttribute("download", exportedFilenmae);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }
+      }
     }
   }
 
@@ -88,6 +112,7 @@ export class HomeComponent {
       }
       request = request.substring(0, request.length - 1);
       request += "]";
+      this.move();
       this.httpClient.post(this.baseUrl + 'Check', request, { headers: { 'Content-Type': 'application/json' } }).subscribe(
         response => {
           var result = JSON.parse(JSON.stringify(response));
@@ -169,6 +194,8 @@ export class HomeComponent {
               a.href = URL.createObjectURL(file);
               this.downloadFile = true;
               this.savePath = a.href;
+
+              this.exportCSVFile(result);
             }
           }
         });
@@ -176,6 +203,7 @@ export class HomeComponent {
   }
 
   public checkNumber() {
+    var self = this;
     if (this.numberToCheck != null && this.numberToCheck.length > 0) {
       this.httpClient.post(this.baseUrl + 'Check',
         "[   {\"id\": 559,\"phone\": \"" + this.numberToCheck + "\"}]",
@@ -184,6 +212,8 @@ export class HomeComponent {
 
         var searchResult: any[];
         var result = JSON.parse(JSON.stringify(response));
+
+        self.move();
         if (result != null) {
           var resultCode = response['resultCode'];
           var isException = response['isException'];
@@ -264,6 +294,72 @@ export class HomeComponent {
     }
   }
 
+  public move() {
+    this.progress = 1;
+    var elem = document.getElementById("myBar");
+    var width = 0;
+    elem.style.width = '0%';
+    elem.style.visibility = 'visible';
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        this.progress = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width + "%";
+      }
+    }
+
+  }
+
+  public convertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) {
+      var line = '';
+      for (var index in array[i]) {
+        if (line != '') line += ';'
+
+        line += array[i][index];
+      }
+
+      str += line + '\r\n';
+    }
+
+    return str;
+  }
+
+  public exportCSVFile(items) {
+    var fileTitle = 'result'; // or 'my-unique-title'
+    var headers = {
+      id: 'Temp id'.replace(/,/g, ''), // remove commas to avoid errors
+      phone: 'Phone number'.replace(/,/g, ''), // remove commas to avoid errors
+      telegram: "Telegram",
+      telegramLogin: "Telegram username",
+    };
+    if (headers) {
+      items.unshift(headers);
+    }
+
+    var itemsFormatted = [];
+
+    // format the data
+    items.forEach((item) => {
+      itemsFormatted.push({
+        phone: item.phone.replace(/,/g, ''), // remove commas to avoid errors,
+        telegram: item.telegram,
+      });
+    });
+    // Convert Object to JSON
+    var jsonObject = JSON.stringify(itemsFormatted);
+
+    var csv = this.convertToCSV(jsonObject);
+    this.resultToFile = csv;
+
+  }
 }
 
 interface ServicesStatus {

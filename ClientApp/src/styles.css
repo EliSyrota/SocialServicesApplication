@@ -110,9 +110,9 @@ code {
     font-family: 'Roboto', sans-serif;
   }
 
-    .form-inner input[type="submit"] {
-      background-image: linear-gradient(242deg, #d08a8b, #7e6fd3 51%, #5368d0);
-    }
+  .form-inner input[type="submit"] {
+    background-image: linear-gradient(242deg, #d08a8b, #7e6fd3 51%, #5368d0);
+  }
 
 body {
   background-image: linear-gradient(242deg, #d08a8b, #7e6fd3 51%, #5368d0);
@@ -155,3 +155,36 @@ body {
   .switch-on::after {
     left: 37px;
   }
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+}
+
+.download-wrapper {
+  cursor: pointer;
+  margin-top: -100px;
+  opacity: .7;
+}
+
+i.material-icons {
+  font-size: 30px;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  margin: auto;
+  display: block;
+}
+
+p {
+  text-align: center;
+  color: #fff;
+  margin: auto;
+  height: 30px;
+  font-size: 22px;
+  font-family: 'Abel', sans-serif;
+}

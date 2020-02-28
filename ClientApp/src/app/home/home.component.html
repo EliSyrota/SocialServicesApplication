@@ -52,14 +52,19 @@
   </div>
   <div class="token">
     <h3>✪ Проверить <code>Telegram </code>аккаунт</h3>
-    <div class="form-inner" >
+    <div class="form-inner">
       <form class="tokenForm" method="post" id="multicheck">
         <label>Номера телефонов</label><br />
         <textarea rows="3" id="phones" style="width: 100%; background-image: linear-gradient(242deg, #d99c9d, #8677d9 51%, #6072cc); color: rgba(255,255,255,.7);" placeholder="380937502020
 380937502025" (keyup)="onKey($event)"></textarea>
         <input type="button" value="Выбрать (Ctrl + Enter)" (click)="checkNumbers()">
+
         <input type="button" value="Сохранить результаты поиска" (click)="saveFile()" [readonly]="!this.downloadFile">
       </form>
+      <div id="myProgress">
+        <div id="myBar" style="width: 0px"></div>
+      </div>
+      
     </div>
   </div>
 </div>
