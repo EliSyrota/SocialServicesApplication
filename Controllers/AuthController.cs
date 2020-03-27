@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using TLSharp.Core.Exceptions;
 
 namespace SocialServicesApplication.Controllers
@@ -44,7 +45,9 @@ namespace SocialServicesApplication.Controllers
 				try
 				{
 					_telegramService.AuthUser().Wait();
-					return new JsonResult(new AuthSuccessfulJsonResult());
+                    var info = new AuthSuccessfulJsonResult();
+					Log.Logger.Information(info.MessageText);
+					return new JsonResult(info);
 				}
 				catch (Exception e)
 				{
